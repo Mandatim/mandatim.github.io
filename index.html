@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ניחוש המנדטים 2026</title>
+<meta name="description" content="חלקו 120 מנדטים בין המפלגות ושלחו את הניחוש שלכם לחברים בווטסאפ.">
+<meta property="og:title" content="מי ייקח כמה? ניחוש המנדטים 2026">
+<meta property="og:description" content="חלקו 120 מנדטים בין המפלגות ושלחו את הניחוש לחברים.">
+<meta property="og:image" content="https://ozmadvil.github.io/mandatim/og.png">
+<meta property="og:url" content="https://ozmadvil.github.io/mandatim/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+html{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}
+img{max-width:100%}[hidden]{display:none!important}
+/* Layout: blue flag-band header, one working card (name + party steppers), sticky seat meter, share, Boten ad at the foot */
+:root{
+  --sky:#0a5bff;        /* bright blue ground */
+  --sky-deep:#0038b8;   /* flag blue */
+  --ink:#06204f;
+  --paper:#ffffff;
+  --mist:#eaf1ff;
+  --line:#c9d9ff;
+  --gold:#ffd23f;
+  --ok:#11a36a;
+  --warn:#e5484d;
+  --display:"Secular One","Assistant",Arial,sans-serif;
+  --body:"Assistant",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  background-image:radial-gradient(1200px 500px at 50% -10%,#3d84ff 0%,transparent 70%),linear-gradient(180deg,var(--sky) 0%,var(--sky-deep) 100%);background-attachment:fixed;min-height:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sky-deep)}
+.wrap{max-width:620px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 32px;display:flex;flex-direction:column;gap:18px}
+
+/* flag hero */
+.hero{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;color:var(--paper);padding-top:6px}
+.flag{width:150px;max-width:100%;aspect-ratio:11/8;border-radius:6px;box-shadow:0 10px 30px rgba(0,20,80,.45);animation:wave 4s ease-in-out infinite;transform-origin:right center}
+@keyframes wave{0%,100%{transform:perspective(400px) rotateY(0deg)}50%{transform:perspective(400px) rotateY(-10deg)}}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,8vw,3rem);line-height:1.05;margin:0;text-wrap:balance;text-shadow:0 3px 0 var(--sky-deep)}
+.sub{margin:0;font-size:1.05rem;opacity:.92;max-width:34ch;text-wrap:balance}
+
+.card{background:var(--paper);border-radius:18px;padding:18px;box-shadow:0 14px 40px rgba(0,20,80,.35);display:flex;flex-direction:column;gap:14px}
+label.lbl{font-weight:700;font-size:.9rem;letter-spacing:.02em;color:var(--sky-deep)}
+input[type=text]{width:100%;font:inherit;font-size:1.05rem;padding:12px 14px;border:2px solid var(--line);border-radius:12px;color:var(--ink);background:var(--mist)}
+input[type=text]:focus{outline:none;border-color:var(--sky);background:var(--paper)}
+
+/* sticky meter */
+.meter{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ink);color:var(--paper);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 26px rgba(0,10,40,.45)}
+.meter-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.count{font-family:var(--display);font-size:2rem;line-height:1;font-variant-numeric:tabular-nums}
+.count small{font-family:var(--body);font-size:1rem;opacity:.7}
+.status{font-weight:700;font-size:.95rem;text-align:left}
+.status.full{color:var(--gold)}
+.bar{position:relative;height:16px;border-radius:8px;background:rgba(255,255,255,.12);overflow:hidden;display:flex;direction:rtl}
+.bar span{height:100%;transition:width .25s}
+.mark61{position:absolute;top:-3px;bottom:-3px;right:calc(61/120*100%);width:2px;background:var(--gold)}
+.meter-foot{display:flex;justify-content:space-between;font-size:.8rem;opacity:.75}
+
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:inherit;font-weight:600;font-size:.9rem;padding:7px 12px;border-radius:999px;border:2px solid var(--line);background:var(--paper);color:var(--sky-deep);cursor:pointer}
+.chip:hover{border-color:var(--sky)}
+.chip:focus-visible,.step:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.parties{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--mist)}
+.row:last-child{border-bottom:0}
+.dot{width:10px;height:34px;border-radius:5px}
+.pname{min-width:0;font-weight:700;font-size:1.02rem;line-height:1.2}
+.pname small{display:block;font-weight:400;font-size:.8rem;color:#5a6b8f}
+.stepper{display:flex;align-items:center;gap:6px}
+.step{width:38px;height:38px;border-radius:12px;border:0;background:var(--mist);color:var(--sky-deep);font-size:1.4rem;font-weight:800;line-height:1;cursor:pointer;display:grid;place-items:center}
+.step:hover:not(:disabled){background:var(--line)}
+.step:disabled{opacity:.35;cursor:not-allowed}
+.num{width:44px;text-align:center;font-family:var(--display);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.num.zero{color:#a9b6d3}
+.add{display:flex;gap:8px}
+.add input{flex:1;min-width:0}
+.note{margin:0;font-size:.85rem;color:#5a6b8f}
+
+.btn{font:inherit;font-weight:800;font-size:1.1rem;border:0;border-radius:14px;padding:14px 18px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;text-align:center}
+.wa{background:#25d366;color:#05351b}
+.wa:hover{filter:brightness(1.05)}
+.copy{background:var(--mist);color:var(--sky-deep)}
+.share{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.toast{min-height:1.4em;font-size:.9rem;text-align:center;color:var(--ok);font-weight:700}
+.shot{width:100%;max-width:100%;aspect-ratio:4/5;border-radius:12px;background:var(--mist);box-shadow:0 6px 18px rgba(0,20,80,.18);-webkit-touch-callout:default}
+.how{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+.save{background:var(--sky);color:var(--paper)}
+.save:hover{background:var(--sky-deep)}
+.preview{background:var(--mist);border-radius:12px;padding:12px;white-space:pre-wrap;font-size:.92rem;max-height:200px;overflow:auto}
+
+/* Boten ad */
+.ad{position:relative;background:var(--gold);color:var(--ink);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;text-decoration:none;box-shadow:0 10px 30px rgba(0,20,80,.35)}
+.ad .tag{position:absolute;top:8px;left:12px;font-size:.7rem;font-weight:700;letter-spacing:.06em;opacity:.6}
+.nut{width:56px;height:56px;border-radius:16px;background:var(--ink);display:grid;place-items:center}
+.ad h2{font-family:var(--display);font-weight:400;font-size:1.4rem;margin:0;line-height:1.1}
+.ad p{margin:2px 0 0;font-size:.95rem}
+.ad .go{display:inline-block;margin-top:8px;font-weight:800;border-bottom:2px solid currentColor}
+.ad-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.9rem}
+.ad-links a{color:var(--paper);font-weight:600}
+footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
+@media (prefers-reduced-motion:reduce){.flag{animation:none}.bar span{transition:none}}
+@media (max-width:420px){.share{grid-template-columns:1fr}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <svg class="flag" viewBox="0 0 220 160" role="img" aria-label="דגל ישראל">
+      <rect width="220" height="160" fill="#fff"/>
+      <rect y="15" width="220" height="25" fill="#0038b8"/>
+      <rect y="120" width="220" height="25" fill="#0038b8"/>
+      <g fill="none" stroke="#0038b8" stroke-width="5.5" stroke-linejoin="miter">
+        <polygon points="110,47 136,92 84,92"/>
+        <polygon points="110,113 84,68 136,68"/>
+      </g>
+    </svg>
+    <h1>מי ייקח כמה?</h1>
+    <p class="sub">חלקו 120 מנדטים בין המפלגות, ושלחו את הניחוש שלכם לחברים בווטסאפ.</p>
+  </header>
+
+  <section class="card">
+    <label class="lbl" for="who">השם שלך</label>
+    <input type="text" id="who" placeholder="למשל: עוז" maxlength="30" autocomplete="given-name">
+  </section>
+
+  <div class="meter" aria-live="polite">
+    <div class="meter-top">
+      <div class="count"><span id="total">0</span> <small>/ 120 מנדטים</small></div>
+      <div class="status" id="status"></div>
+    </div>
+    <div class="bar" id="bar"><i class="mark61" title="61 – רוב בכנסת"></i></div>
+    <div class="meter-foot"><span>0</span><span>61 · רוב</span><span>120</span></div>
+  </div>
+
+  <section class="card">
+    <div class="tools">
+      <button class="chip" id="avg" type="button">התחל מממוצע הסקרים</button>
+      <button class="chip" id="reset" type="button">אפס הכל</button>
+    </div>
+    <p class="note">אחוז החסימה הוא 3.25%, כלומר 4 מנדטים. לחיצה על + ממפלגה ריקה מכניסה אותה ישר עם 4.</p>
+    <ul class="parties" id="list"></ul>
+    <form class="add" id="addForm">
+      <input type="text" id="newParty" placeholder="מפלגה נוספת…" maxlength="30">
+      <button class="chip" type="submit">הוסף</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <label class="lbl">התמונה לשיתוף</label>
+    <img class="shot" id="shot" alt="תמונת הניחוש שלך">
+    <ol class="how">
+      <li><b>בטלפון:</b> "שתפו את התמונה" ובחרו ווטסאפ. התמונה והקישור יוצאים יחד.</li>
+      <li><b>במחשב:</b> התמונה תישמר, ואז "שתפו בווטסאפ" וצרפו אותה להודעה.</li>
+    </ol>
+    <button class="btn save" id="save" type="button">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1Zm-8 15a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/></svg>
+      שתפו את התמונה
+    </button>
+    <label class="lbl" style="margin-top:4px">ההודעה בווטסאפ</label>
+    <div class="preview" id="preview"></div>
+    <div class="share">
+      <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+        שתפו בווטסאפ
+      </a>
+      <button class="btn copy" id="copy" type="button">העתק</button>
+    </div>
+    <div class="toast" id="toast"></div>
+  </section>
+
+  <a class="ad" href="https://ozmadvil.github.io/boten-site/" target="_blank" rel="noopener">
+    <span class="tag">פרסומת</span>
+    <span class="nut" aria-hidden="true">
+      <svg width="34" height="34" viewBox="0 0 40 40"><path d="M20 4c-6 0-9 4-9 8.5 0 3 1.6 4.6 1.6 7.5S11 24.4 11 27.5C11 32 14 36 20 36s9-4 9-8.5c0-3.1-1.6-4.6-1.6-7.5s1.6-4.5 1.6-7.5C29 8 26 4 20 4Z" fill="#ffd23f"/><g fill="#b88a00"><circle cx="17" cy="11" r="1.3"/><circle cx="23" cy="14" r="1.3"/><circle cx="18" cy="27" r="1.3"/><circle cx="23" cy="30" r="1.3"/></g></svg>
+    </span>
+    <span>
+      <h2>בוטן – הדילים הכי שווים מאליאקספרס</h2>
+      <p>מוצרים נבחרים, קופונים בתוקף ומחירים זולים יותר. הכל בעברית.</p>
+      <span class="go">לאתר של בוטן ←</span>
+    </span>
+  </a>
+  <div class="ad-links">
+    <a href="https://t.me/Boten_IL_bot" target="_blank" rel="noopener">הבוט בטלגרם</a>
+    <a href="https://t.me/Boten_deals" target="_blank" rel="noopener">ערוץ הדילים</a>
+  </div>
+
+  <footer>ממוצע הסקרים: לפי ריכוז הסקרים באתר סרוגים, 22.10.2026. האתר לא קשור לאף מפלגה.</footer>
+</div>
+
+<script>
+(function(){
+  const MAX=120, MIN_PARTY=4, SITE="https://ozmadvil.github.io/mandatim/";
+  const COLORS=["#0a5bff","#00a3ff","#ff8a00","#7c3aed","#16a34a","#e11d48","#0891b2","#ca8a04","#9333ea","#059669","#dc2626","#2563eb","#d946ef","#65a30d","#f97316","#0f766e"];
+  const AVG={"הליכוד":21,"ישר!":21,"ביחד":12,"עוצמה יהודית":8,"ש\"ס":8,"הדמוקרטים":8,"חד\"ש-תע\"ל-בל\"ד":8,"הציונות הדתית":7,"יהדות התורה":7,"ישראל ביתנו":7,"רע\"מ":5,"עמך ישראל":4,"הנדל וזליכה":4};
+  const SUB={"ישר!":"איזנקוט","עמך ישראל":"וינטר"};
+  let parties=Object.keys(AVG).map((n,i)=>({name:n,seats:AVG[n],color:COLORS[i%COLORS.length]}));
+
+  const $=id=>document.getElementById(id);
+  const list=$("list"), who=$("who");
+
+  // restore draft
+  try{const s=JSON.parse(localStorage.getItem("mandatim-v1")||"null"); if(s&&Array.isArray(s.parties)){parties=s.parties; who.value=s.name||"";}}catch(e){}
+  function save(){try{localStorage.setItem("mandatim-v1",JSON.stringify({parties,name:who.value}))}catch(e){}}
+
+  const total=()=>parties.reduce((a,p)=>a+p.seats,0);
+
+  function change(i,dir){
+    const p=parties[i], left=MAX-total();
+    if(dir>0){
+      const want = p.seats===0 ? MIN_PARTY : 1;
+      if(want>left) return flash(p.seats===0?"אין מספיק מנדטים פנויים כדי להעביר אותה את אחוז החסימה":"הגעתם ל-120 – הורידו ממפלגה אחרת");
+      p.seats+=want;
+    }else{
+      if(p.seats===0) return;
+      p.seats = p.seats===MIN_PARTY ? 0 : p.seats-1;
+    }
+    render();
+  }
+
+  function render(){
+    const t=total(), left=MAX-t;
+    list.innerHTML="";
+    parties.forEach((p,i)=>{
+      const li=document.createElement("li"); li.className="row";
+      li.innerHTML=`<span class="dot" style="background:${p.color}"></span>
+        <span class="pname"></span>
+        <span class="stepper">
+          <button class="step" type="button" aria-label="הוסף מנדט">+</button>
+          <span class="num${p.seats?"":" zero"}">${p.seats}</span>
+          <button class="step" type="button" aria-label="הורד מנדט">−</button>
+        </span>`;
+      const nm=li.querySelector(".pname"); nm.textContent=p.name;
+      if(SUB[p.name]){const s=document.createElement("small");s.textContent=SUB[p.name];nm.appendChild(s);}
+      if(p.custom){const s=document.createElement("small");s.textContent="נוספה על ידיך";nm.appendChild(s);}
+      const [plus,minus]=li.querySelectorAll(".step");
+      plus.disabled = left<=0 || (p.seats===0 && left<MIN_PARTY);
+      minus.disabled = p.seats===0;
+      plus.onclick=()=>change(i,1); minus.onclick=()=>change(i,-1);
+      list.appendChild(li);
+    });
+    $("total").textContent=t;
+    const st=$("status");
+    st.textContent = left===0 ? "הכנסת מלאה ✓" : `נשארו ${left} מנדטים`;
+    st.className="status"+(left===0?" full":"");
+    const bar=$("bar"); bar.querySelectorAll("span").forEach(s=>s.remove());
+    [...parties].filter(p=>p.seats).sort((a,b)=>b.seats-a.seats).forEach(p=>{
+      const s=document.createElement("span"); s.style.width=(p.seats/MAX*100)+"%"; s.style.background=p.color; s.title=p.name+" "+p.seats;
+      bar.insertBefore(s,bar.querySelector(".mark61"));
+    });
+    const msg=buildMsg();
+    $("preview").textContent=msg;
+    $("wa").href="https://wa.me/?text="+encodeURIComponent(msg);
+    save();
+    if(typeof refreshShot==="function") refreshShot();
+  }
+
+  function buildMsg(){
+    const name=who.value.trim();
+    const rows=[...parties].filter(p=>p.seats).sort((a,b)=>b.seats-a.seats).map(p=>`${p.name} – ${p.seats}`);
+    const t=total();
+    let m=`🇮🇱 ${name?`הניחוש של ${name}`:"הניחוש שלי"} לבחירות 2026:\n\n`+(rows.length?rows.join("\n"):"(עוד לא חולקו מנדטים)");
+    if(t<MAX) m+=`\n\n(חולקו ${t} מתוך 120)`;
+    m+=`\n\nמה הניחוש שלכם? 🗳️\nתנחשו כאן: ${SITE}`;
+    return m;
+  }
+
+  /* ---------- share image (1080x1350) ---------- */
+  const W=1080,H=1350, cv=document.createElement("canvas"); cv.width=W; cv.height=H;
+  const ctx=cv.getContext("2d");
+  function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+  function drawFlag(x,y,w){
+    const h=w*8/11; ctx.save(); rr(x,y,w,h,10); ctx.clip();
+    ctx.fillStyle="#fff";ctx.fillRect(x,y,w,h);
+    ctx.fillStyle="#0038b8";ctx.fillRect(x,y+h*.094,w,h*.156);ctx.fillRect(x,y+h*.75,w,h*.156);
+    const cx=x+w/2, cy=y+h/2, r=h*.21; ctx.strokeStyle="#0038b8"; ctx.lineWidth=h*.034; ctx.lineJoin="miter";
+    [[-90,30,150],[90,210,330]].forEach(a=>{ctx.beginPath();a.forEach((d,k)=>{const t=d*Math.PI/180;ctx[k?"lineTo":"moveTo"](cx+r*Math.cos(t),cy+r*Math.sin(t))});ctx.closePath();ctx.stroke();});
+    ctx.restore();
+  }
+  function drawImage(){
+    const g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,"#1a6bff"); g.addColorStop(1,"#0038b8");
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    ctx.direction="rtl"; ctx.textBaseline="alphabetic";
+    drawFlag(W-60-190,52,190);
+    const name=who.value.trim();
+    ctx.fillStyle="#fff"; ctx.textAlign="right";
+    ctx.font='400 74px "Secular One", Arial, sans-serif';
+    ctx.fillText(name?`הניחוש של ${name}`:"הניחוש שלי", W-60, 260);
+    ctx.font='600 40px "Assistant", Arial, sans-serif'; ctx.globalAlpha=.85;
+    ctx.fillText("התפלגות המנדטים · בחירות 2026", W-60, 318); ctx.globalAlpha=1;
+
+    // panel
+    const px=48, py=360, pw=W-96, ph=830; ctx.fillStyle="#ffffff"; rr(px,py,pw,ph,32); ctx.fill();
+    const rows=[...parties].filter(p=>p.seats).sort((a,b)=>b.seats-a.seats);
+    const t=total();
+    if(!rows.length){ctx.fillStyle="#5a6b8f";ctx.textAlign="center";ctx.font='600 44px "Assistant", Arial';ctx.fillText("עוד לא חולקו מנדטים",W/2,py+ph/2);}
+    else{
+      const n=rows.length, rh=Math.min(68,(ph-110)/n), maxSeats=Math.max(...rows.map(r=>r.seats));
+      const nameW=330, numW=90, barX0=px+40+numW, barRight=px+pw-40-nameW-20, barMax=barRight-barX0;
+      let y=py+40;
+      rows.forEach(p=>{
+        const cy=y+rh/2;
+        ctx.fillStyle="#06204f"; ctx.textAlign="right"; ctx.font=`700 ${Math.round(rh*.5)}px "Assistant", Arial`;
+        let label=p.name; while(ctx.measureText(label).width>nameW && label.length>2) label=label.slice(0,-2)+"…";
+        ctx.fillText(label, px+pw-40, cy+rh*.17);
+        const bw=Math.max(8,barMax*p.seats/maxSeats); ctx.fillStyle=p.color; rr(barRight-bw,cy-rh*.28,bw,rh*.56,rh*.14); ctx.fill();
+        ctx.fillStyle="#06204f"; ctx.textAlign="left"; ctx.font=`400 ${Math.round(rh*.62)}px "Secular One", Arial`;
+        ctx.direction="ltr"; ctx.fillText(String(p.seats), px+40, cy+rh*.22); ctx.direction="rtl";
+        y+=rh;
+      });
+      // total line
+      ctx.fillStyle="#eaf1ff"; ctx.fillRect(px+40,py+ph-66,pw-80,2);
+      ctx.fillStyle="#0038b8"; ctx.textAlign="right"; ctx.font='700 34px "Assistant", Arial';
+      ctx.fillText(t===MAX?"סה\"כ 120 מנדטים":`חולקו ${t} מתוך 120`, px+pw-40, py+ph-22);
+    }
+    // footer
+    ctx.fillStyle="#ffd23f"; rr(48,1220,W-96,90,24); ctx.fill();
+    ctx.fillStyle="#06204f"; ctx.textAlign="center"; ctx.font='800 40px "Assistant", Arial';
+    ctx.fillText("מה הניחוש שלכם? הקישור בהודעה ←", W/2, 1279);
+    return cv.toDataURL("image/png");
+  }
+  let shotTimer; function refreshShot(){clearTimeout(shotTimer);shotTimer=setTimeout(()=>{$("shot").src=drawImage();},120);}
+
+  let tt; function flash(txt,ok){const el=$("toast");el.style.color=ok?"var(--ok)":"var(--warn)";el.textContent=txt;clearTimeout(tt);tt=setTimeout(()=>el.textContent="",2600);}
+
+  who.addEventListener("input",render);
+  $("avg").onclick=()=>{parties.forEach(p=>p.seats=AVG[p.name]||0);render();flash("נטען ממוצע הסקרים – עכשיו שנו לפי הניחוש שלכם",true)};
+  $("reset").onclick=()=>{parties.forEach(p=>p.seats=0);render();};
+  $("addForm").addEventListener("submit",e=>{
+    e.preventDefault(); const v=$("newParty").value.trim(); if(!v) return;
+    if(parties.some(p=>p.name===v)) return flash("המפלגה כבר ברשימה");
+    parties.push({name:v,seats:0,color:COLORS[parties.length%COLORS.length],custom:true});
+    $("newParty").value=""; render();
+  });
+  $("wa").addEventListener("click",e=>{ if(total()===0){e.preventDefault();flash("חלקו קודם כמה מנדטים");} });
+  $("copy").onclick=()=>{
+    const msg=buildMsg();
+    const ok=()=>flash("ההודעה הועתקה",true);
+    try{navigator.clipboard.writeText(msg).then(ok,sel)}catch(e){sel()}
+    function sel(){const r=document.createRange();r.selectNodeContents($("preview"));const s=getSelection();s.removeAllRanges();s.addRange(r);flash("סמנו והעתיקו ידנית",true);}
+  };
+  $("save").onclick=async()=>{
+    if(total()===0) return flash("חלקו קודם כמה מנדטים");
+    const name=who.value.trim(), fname=`ניחוש-מנדטים${name?"-"+name:""}.png`;
+    const blob=await new Promise(r=>cv.toBlob(r,"image/png"));
+    const file=new File([blob],fname,{type:"image/png"});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      try{await navigator.share({files:[file],text:buildMsg()});return;}catch(e){if(e&&e.name==="AbortError")return;}
+    }
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=fname;document.body.appendChild(a);a.click();
+    setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);
+    flash("התמונה נשמרה – עכשיו שלחו בווטסאפ וצרפו אותה",true);
+  };
+  render();
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{
+    Promise.all(['400 74px "Secular One"','700 40px "Assistant"','800 40px "Assistant"'].map(f=>document.fonts.load(f).catch(()=>{}))).then(refreshShot);
+  });
+})();
+</script>
+
+</body>
+</html>
