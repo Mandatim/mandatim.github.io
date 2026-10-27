@@ -7,11 +7,9 @@
 <meta name="description" content="חלקו 120 מנדטים בין המפלגות ושלחו את הניחוש שלכם לחברים בווטסאפ.">
 <meta property="og:title" content="נחשו את בחירות 2026">
 <meta property="og:description" content="חלקו 120 מנדטים בין המפלגות ושלחו את הניחוש לחברים.">
-<meta property="og:image" content="https://ozmadvil.github.io/mandatim/og.png?v=4">
+<meta property="og:image" content="https://ozmadvil.github.io/mandatim/og.png?v=5">
 <meta property="og:url" content="https://ozmadvil.github.io/mandatim/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@400;600;700&display=swap">
 <style>
 html{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);background:var(--bg-2)}body{margin:0}
 img{max-width:100%}[hidden]{display:none!important}
@@ -29,8 +27,8 @@ img{max-width:100%}[hidden]{display:none!important}
   --muted:#6a7c99;
   --ok:#1f9d61;
   --warn:#d14343;
-  --serif:"Frank Ruhl Libre","David","Times New Roman",serif;
-  --sans:"Assistant","Segoe UI",Arial,sans-serif;
+  --serif:Arial,"Helvetica Neue",Helvetica,sans-serif;
+  --sans:Arial,"Helvetica Neue",Helvetica,sans-serif;
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -309,7 +307,7 @@ footer{color:var(--muted);text-align:center;font-size:.8rem}
   }
   function drawImage(){
     const NAVY="#14306b", BLUE="#2f80ed", MUTED="#6a7c99", LINE="#e3edf9";
-    const SERIF='"Frank Ruhl Libre", "Times New Roman", serif', SANS='"Assistant", Arial, sans-serif';
+    const SERIF='Arial, Helvetica, sans-serif', SANS='Arial, Helvetica, sans-serif';
     const g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,"#eaf4ff"); g.addColorStop(1,"#d2e6ff");
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
     ctx.direction="rtl"; ctx.textBaseline="alphabetic";
@@ -395,9 +393,7 @@ footer{color:var(--muted);text-align:center;font-size:.8rem}
     flash("התמונה נשמרה – עכשיו שלחו בווטסאפ וצרפו אותה",true);
   };
   render();
-  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{
-    Promise.all(['700 78px "Frank Ruhl Libre"','700 28px "Assistant"','800 36px "Assistant"'].map(f=>document.fonts.load(f).catch(()=>{}))).then(refreshShot);
-  });
+  refreshShot();
 })();
 </script>
 
