@@ -32,7 +32,7 @@ img{max-width:100%}[hidden]{display:none!important}
 }
 *{box-sizing:border-box}
 html,button,a,.stepper,.num{touch-action:manipulation}
-.stepper{-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.stepper{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
 body{background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
   background-image:radial-gradient(1200px 500px at 50% -10%,#3d84ff 0%,transparent 70%),linear-gradient(180deg,var(--sky) 0%,var(--sky-deep) 100%);background-attachment:fixed;min-height:100%}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sky-deep)}
@@ -145,7 +145,7 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
       <button class="chip" id="avg" type="button">התחל מממוצע הסקרים</button>
       <button class="chip" id="reset" type="button">אפס הכל</button>
     </div>
-    <p class="note">אחוז החסימה הוא 3.25%, כלומר 4 מנדטים. לחיצה על + ממפלגה ריקה מכניסה אותה ישר עם 4.</p>
+    <p class="note">אחוז החסימה הוא 3.25%, כלומר 4 מנדטים. לחיצה על + ממפלגה ריקה מכניסה אותה ישר עם 4. לחיצה ארוכה מוסיפה או מורידה ברצף.</p>
     <ul class="parties" id="list"></ul>
     <form class="add" id="addForm">
       <input type="text" id="newParty" placeholder="מפלגה נוספת…" maxlength="30">
@@ -225,26 +225,56 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
     render();
   }
 
+  // press = one step; hold = keep going, faster over time
+  let holdT=null;
+  function stopHold(){clearTimeout(holdT);holdT=null;}
+  function startHold(i,d){
+    stopHold(); change(i,d);
+    let delay=380, n=0;
+    const tick=()=>{
+      const before=total(), seats=parties[i].seats;
+      change(i,d);
+      if(total()===before && parties[i].seats===seats) return stopHold();
+      n++; delay = n<4?160:n<10?90:55;
+      holdT=setTimeout(tick,delay);
+    };
+    holdT=setTimeout(tick,delay);
+  }
+  ["pointerup","pointercancel","blur"].forEach(ev=>window.addEventListener(ev,stopHold));
+  document.addEventListener("visibilitychange",stopHold);
+
   function render(){
     const t=total(), left=MAX-t;
-    list.innerHTML="";
+    // rows are built once (and when a party is added), then only updated,
+    // so a finger held on a button keeps the same element under it
+    if(list.children.length!==parties.length){
+      list.innerHTML="";
+      parties.forEach((p,i)=>{
+        const li=document.createElement("li"); li.className="row";
+        li.innerHTML=`<span class="dot" style="background:${p.color}"></span>
+          <span class="pname"></span>
+          <span class="stepper">
+            <button class="step" type="button" aria-label="הוסף מנדט">+</button>
+            <span class="num"></span>
+            <button class="step" type="button" aria-label="הורד מנדט">−</button>
+          </span>`;
+        const nm=li.querySelector(".pname"); nm.textContent=p.name;
+        if(SUB[p.name]){const s=document.createElement("small");s.textContent=SUB[p.name];nm.appendChild(s);}
+        if(p.custom){const s=document.createElement("small");s.textContent="נוספה על ידיך";nm.appendChild(s);}
+        const [plus,minus]=li.querySelectorAll(".step");
+        [[plus,1],[minus,-1]].forEach(([btn,d])=>{
+          btn.addEventListener("pointerdown",e=>{if(e.button>0)return;e.preventDefault();startHold(i,d);});
+          btn.addEventListener("click",e=>{if(e.detail===0)change(i,d);}); // keyboard
+          btn.addEventListener("contextmenu",e=>e.preventDefault());
+        });
+        list.appendChild(li);
+      });
+    }
     parties.forEach((p,i)=>{
-      const li=document.createElement("li"); li.className="row";
-      li.innerHTML=`<span class="dot" style="background:${p.color}"></span>
-        <span class="pname"></span>
-        <span class="stepper">
-          <button class="step" type="button" aria-label="הוסף מנדט">+</button>
-          <span class="num${p.seats?"":" zero"}">${p.seats}</span>
-          <button class="step" type="button" aria-label="הורד מנדט">−</button>
-        </span>`;
-      const nm=li.querySelector(".pname"); nm.textContent=p.name;
-      if(SUB[p.name]){const s=document.createElement("small");s.textContent=SUB[p.name];nm.appendChild(s);}
-      if(p.custom){const s=document.createElement("small");s.textContent="נוספה על ידיך";nm.appendChild(s);}
-      const [plus,minus]=li.querySelectorAll(".step");
+      const li=list.children[i], [plus,minus]=li.querySelectorAll(".step"), num=li.querySelector(".num");
+      num.textContent=p.seats; num.className="num"+(p.seats?"":" zero");
       plus.disabled = left<=0 || (p.seats===0 && left<MIN_PARTY);
       minus.disabled = p.seats===0;
-      plus.onclick=()=>change(i,1); minus.onclick=()=>change(i,-1);
-      list.appendChild(li);
     });
     $("total").textContent=t;
     const st=$("status");
