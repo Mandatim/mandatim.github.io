@@ -7,113 +7,131 @@
 <meta name="description" content="חלקו 120 מנדטים בין המפלגות ושלחו את הניחוש שלכם לחברים בווטסאפ.">
 <meta property="og:title" content="נחשו את בחירות 2026">
 <meta property="og:description" content="חלקו 120 מנדטים בין המפלגות ושלחו את הניחוש לחברים.">
-<meta property="og:image" content="https://ozmadvil.github.io/mandatim/og.png?v=2">
+<meta property="og:image" content="https://ozmadvil.github.io/mandatim/og.png?v=3">
 <meta property="og:url" content="https://ozmadvil.github.io/mandatim/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@400;600;700&display=swap">
 <style>
 html{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}
 img{max-width:100%}[hidden]{display:none!important}
-/* Layout: blue flag-band header, one working card (name + party steppers), sticky seat meter, share, Boten ad at the foot */
+/* Layout: state-document feel. Royal-navy ground with fine engraving lines, ivory "papers" framed in gold hairlines,
+   a classical serif for headings and seat numbers, a quiet sans for the controls. */
 :root{
-  --sky:#0a5bff;        /* bright blue ground */
-  --sky-deep:#0038b8;   /* flag blue */
-  --ink:#06204f;
-  --paper:#ffffff;
-  --mist:#eaf1ff;
-  --line:#c9d9ff;
-  --gold:#ffd23f;
-  --ok:#11a36a;
-  --warn:#e5484d;
-  --display:"Secular One","Assistant",Arial,sans-serif;
-  --body:"Assistant",Arial,sans-serif;
+  --navy:#0b2259;       /* ground */
+  --navy-2:#071841;
+  --royal:#1d3f99;      /* flag-adjacent blue for actions */
+  --ivory:#fbf7ee;      /* paper */
+  --ivory-2:#f2ebdc;
+  --gold:#b8934a;       /* hairlines, numerals */
+  --gold-lt:#d9bd7e;
+  --ink:#1a2238;
+  --muted:#6b6455;
+  --ok:#2f7a4f;
+  --warn:#a23b34;
+  --serif:"Frank Ruhl Libre","David","Times New Roman",serif;
+  --sans:"Assistant","Segoe UI",Arial,sans-serif;
   color-scheme:light;
 }
 *{box-sizing:border-box}
 html,button,a,.stepper,.num{touch-action:manipulation}
 .stepper{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
-body{background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
-  background-image:radial-gradient(1200px 500px at 50% -10%,#3d84ff 0%,transparent 70%),linear-gradient(180deg,var(--sky) 0%,var(--sky-deep) 100%);background-attachment:fixed;min-height:100%}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sky-deep)}
-.wrap{max-width:620px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 32px;display:flex;flex-direction:column;gap:18px}
+body{background-color:var(--navy);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;min-height:100%;
+  background-image:
+    radial-gradient(900px 420px at 50% 0%,rgba(255,255,255,.10),transparent 70%),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 1px,transparent 1px 7px),
+    linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);
+  background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
+.wrap{max-width:600px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 36px;display:flex;flex-direction:column;gap:20px}
 
-/* flag hero */
-.hero{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;color:var(--paper);padding-top:6px}
-.flag{width:150px;max-width:100%;aspect-ratio:11/8;border-radius:6px;box-shadow:0 10px 30px rgba(0,20,80,.45);animation:wave 4s ease-in-out infinite;transform-origin:right center}
-@keyframes wave{0%,100%{transform:perspective(400px) rotateY(0deg)}50%{transform:perspective(400px) rotateY(-10deg)}}
-h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,8vw,3rem);line-height:1.05;margin:0;text-wrap:balance;text-shadow:0 3px 0 var(--sky-deep)}
-.sub{margin:0;font-size:1.05rem;opacity:.92;max-width:34ch;text-wrap:balance}
+/* hero */
+.hero{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;color:var(--ivory)}
+.flagframe{padding:7px;border:1px solid var(--gold);outline:1px solid rgba(184,147,74,.45);outline-offset:4px;background:rgba(255,255,255,.04)}
+.flag{display:block;width:132px;max-width:100%;aspect-ratio:11/8}
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.08em;color:var(--gold-lt);margin:6px 0 0}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,9vw,3.4rem);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.rule{display:flex;align-items:center;gap:12px;width:min(320px,80%);color:var(--gold)}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.sub{margin:0;font-family:var(--serif);font-size:1.12rem;color:#dfe5f3;max-width:32ch;text-wrap:balance}
 
-.card{background:var(--paper);border-radius:18px;padding:18px;box-shadow:0 14px 40px rgba(0,20,80,.35);display:flex;flex-direction:column;gap:14px}
-label.lbl{font-weight:700;font-size:.9rem;letter-spacing:.02em;color:var(--sky-deep)}
-input[type=text]{width:100%;font:inherit;font-size:1.05rem;padding:12px 14px;border:2px solid var(--line);border-radius:12px;color:var(--ink);background:var(--mist)}
-input[type=text]:focus{outline:none;border-color:var(--sky);background:var(--paper)}
+/* paper */
+.card{position:relative;background:var(--ivory);border-radius:3px;padding:22px 20px;display:flex;flex-direction:column;gap:14px;
+  box-shadow:inset 0 0 0 1px var(--gold),inset 0 0 0 5px var(--ivory),inset 0 0 0 6px rgba(184,147,74,.45),0 18px 40px rgba(2,8,30,.45)}
+.lbl{font-family:var(--serif);font-weight:500;font-size:1.15rem;color:var(--navy);display:flex;align-items:center;gap:10px}
+.lbl::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.5}
+input[type=text]{width:100%;font:inherit;font-size:1.08rem;padding:11px 2px;border:0;border-bottom:1px solid var(--gold);border-radius:0;color:var(--ink);background:transparent}
+input[type=text]::placeholder{color:#a79c86}
+input[type=text]:focus{outline:none;border-bottom:2px solid var(--navy);padding-bottom:10px}
 
-/* sticky meter */
-.meter{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ink);color:var(--paper);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 26px rgba(0,10,40,.45)}
+/* seat meter */
+.meter{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--navy-2);color:var(--ivory);border:1px solid var(--gold);border-radius:3px;padding:12px 16px 10px;display:flex;flex-direction:column;gap:8px;box-shadow:0 12px 28px rgba(0,5,25,.55)}
 .meter-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.count{font-family:var(--display);font-size:2rem;line-height:1;font-variant-numeric:tabular-nums}
-.count small{font-family:var(--body);font-size:1rem;opacity:.7}
-.status{font-weight:700;font-size:.95rem;text-align:left}
-.status.full{color:var(--gold)}
-.bar{position:relative;height:16px;border-radius:8px;background:rgba(255,255,255,.12);overflow:hidden;display:flex;direction:rtl}
-.bar span{height:100%;transition:width .25s}
-.mark61{position:absolute;top:-3px;bottom:-3px;right:calc(61/120*100%);width:2px;background:var(--gold)}
-.meter-foot{display:flex;justify-content:space-between;font-size:.8rem;opacity:.75}
+.count{font-family:var(--serif);font-weight:700;font-size:2.1rem;line-height:1;color:var(--gold-lt);font-variant-numeric:tabular-nums lining-nums}
+.count small{font-family:var(--sans);font-weight:400;font-size:.95rem;color:#c8cfe0;margin-inline-start:4px}
+.status{font-weight:600;font-size:.95rem;text-align:left;color:#c8cfe0}
+.status.full{color:var(--gold-lt)}
+.bar{position:relative;height:12px;background:rgba(255,255,255,.08);overflow:hidden;display:flex;direction:rtl;border-radius:1px}
+.bar span{height:100%;transition:width .25s;box-shadow:inset -1px 0 0 rgba(7,24,65,.6)}
+.mark61{position:absolute;top:0;bottom:0;right:calc(61/120*100%);width:2px;background:var(--gold-lt)}
+.meter-foot{display:flex;justify-content:space-between;font-size:.78rem;color:#9aa6c4;letter-spacing:.04em}
 
-.tools{display:flex;gap:8px;flex-wrap:wrap}
-.chip{font:inherit;font-weight:600;font-size:.9rem;padding:7px 12px;border-radius:999px;border:2px solid var(--line);background:var(--paper);color:var(--sky-deep);cursor:pointer}
-.chip:hover{border-color:var(--sky)}
-.chip:focus-visible,.step:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.tools{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font:inherit;font-weight:600;font-size:.9rem;padding:7px 14px;border-radius:2px;border:1px solid var(--navy);background:transparent;color:var(--navy);cursor:pointer;transition:background .15s,color .15s}
+.chip:hover{background:var(--navy);color:var(--ivory)}
+.chip:focus-visible,.step:focus-visible,.btn:focus-visible,.ad:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-.parties{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.row{display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--mist)}
-.row:last-child{border-bottom:0}
-.dot{width:10px;height:34px;border-radius:5px}
-.pname{min-width:0;font-weight:700;font-size:1.02rem;line-height:1.2}
-.pname small{display:block;font-weight:400;font-size:.8rem;color:#5a6b8f}
-.stepper{display:flex;align-items:center;gap:6px}
-.step{width:38px;height:38px;border-radius:12px;border:0;background:var(--mist);color:var(--sky-deep);font-size:1.4rem;font-weight:800;line-height:1;cursor:pointer;display:grid;place-items:center}
-.step:hover:not(:disabled){background:var(--line)}
-.step:disabled{opacity:.35;cursor:not-allowed}
-.num{width:44px;text-align:center;font-family:var(--display);font-size:1.5rem;font-variant-numeric:tabular-nums}
-.num.zero{color:#a9b6d3}
-.add{display:flex;gap:8px}
+.parties{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid rgba(184,147,74,.5)}
+.row{display:grid;grid-template-columns:4px 1fr auto;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid rgba(184,147,74,.28)}
+.dot{width:4px;height:32px}
+.pname{min-width:0;font-family:var(--serif);font-weight:500;font-size:1.12rem;line-height:1.2}
+.pname small{display:block;font-family:var(--sans);font-weight:400;font-size:.8rem;color:var(--muted)}
+.stepper{display:flex;align-items:center;gap:4px}
+.step{width:38px;height:38px;border-radius:50%;border:1px solid var(--navy);background:transparent;color:var(--navy);font-family:var(--sans);font-size:1.25rem;font-weight:600;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .12s,color .12s}
+.step:hover:not(:disabled){background:var(--navy);color:var(--ivory)}
+.step:active:not(:disabled){background:var(--navy);color:var(--ivory)}
+.step:disabled{opacity:.25;cursor:not-allowed}
+.num{width:46px;text-align:center;font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--navy);font-variant-numeric:tabular-nums lining-nums}
+.num.zero{color:#c9bfa9;font-weight:400}
+.add{display:flex;gap:10px;align-items:flex-end}
 .add input{flex:1;min-width:0}
-.note{margin:0;font-size:.85rem;color:#5a6b8f}
+.note{margin:0;font-size:.88rem;color:var(--muted)}
 
-.btn{font:inherit;font-weight:800;font-size:1.1rem;border:0;border-radius:14px;padding:14px 18px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;text-align:center}
-.wa{background:#25d366;color:#05351b}
-.wa:hover{filter:brightness(1.05)}
-.copy{background:var(--mist);color:var(--sky-deep)}
+.btn{font:inherit;font-weight:700;font-size:1.05rem;border:0;border-radius:2px;padding:14px 18px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;text-align:center;letter-spacing:.01em}
+.save{background:var(--navy);color:var(--ivory);box-shadow:inset 0 0 0 1px var(--gold)}
+.save:hover{background:var(--royal)}
+.wa{background:#1f7a4d;color:var(--ivory)}
+.wa:hover{background:#196640}
+.copy{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+.copy:hover{background:var(--ivory-2)}
 .share{display:grid;grid-template-columns:2fr 1fr;gap:10px}
-.toast{min-height:1.4em;font-size:.9rem;text-align:center;color:var(--ok);font-weight:700}
-.shot{width:100%;max-width:100%;aspect-ratio:4/5;border-radius:12px;background:var(--mist);box-shadow:0 6px 18px rgba(0,20,80,.18);-webkit-touch-callout:default}
+.toast{min-height:1.4em;font-size:.9rem;text-align:center;color:var(--ok);font-weight:600}
+.shot{width:100%;max-width:100%;aspect-ratio:4/5;background:var(--ivory-2);border:1px solid rgba(184,147,74,.6);-webkit-touch-callout:default}
 .how{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
-.save{background:var(--sky);color:var(--paper)}
-.save:hover{background:var(--sky-deep)}
-.preview{background:var(--mist);border-radius:12px;padding:12px;white-space:pre-wrap;font-size:.92rem;max-height:200px;overflow:auto}
+.how b{font-weight:700;color:var(--navy)}
+.preview{background:var(--ivory-2);border-right:2px solid var(--gold);padding:12px 14px;white-space:pre-wrap;font-size:.92rem;max-height:200px;overflow:auto}
 
 /* Boten ad */
-.ad{position:relative;background:var(--gold);color:var(--ink);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;text-decoration:none;box-shadow:0 10px 30px rgba(0,20,80,.35)}
-.ad .tag{position:absolute;top:8px;left:12px;font-size:.7rem;font-weight:700;letter-spacing:.06em;opacity:.6}
-.nut{width:56px;height:56px;border-radius:16px;background:var(--ink);display:grid;place-items:center}
-.ad h2{font-family:var(--display);font-weight:400;font-size:1.4rem;margin:0;line-height:1.1}
-.ad p{margin:2px 0 0;font-size:.95rem}
-.ad .go{display:inline-block;margin-top:8px;font-weight:800;border-bottom:2px solid currentColor}
-.ad-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.9rem}
-.ad-links a{color:var(--paper);font-weight:600}
-footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
-@media (prefers-reduced-motion:reduce){.flag{animation:none}.bar span{transition:none}}
-@media (max-width:420px){.share{grid-template-columns:1fr}}
+.ad{position:relative;background:var(--ivory);color:var(--ink);border-radius:3px;padding:20px 18px 18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;text-decoration:none;
+  box-shadow:inset 0 0 0 1px var(--gold),0 14px 32px rgba(2,8,30,.4);transition:transform .2s}
+.ad:hover{transform:translateY(-2px)}
+.ad .tag{position:absolute;top:8px;left:12px;font-size:.68rem;font-weight:600;letter-spacing:.16em;color:var(--muted)}
+.nut{width:58px;height:58px;border-radius:50%;background:var(--navy);display:grid;place-items:center;box-shadow:0 0 0 1px var(--gold),0 0 0 4px var(--ivory),0 0 0 5px rgba(184,147,74,.5)}
+.ad h2{font-family:var(--serif);font-weight:700;font-size:1.3rem;margin:0;line-height:1.2;color:var(--navy)}
+.ad p{margin:4px 0 0;font-size:.95rem;color:#4a4639}
+.ad .go{display:inline-block;margin-top:8px;font-weight:700;color:var(--navy);border-bottom:1px solid var(--gold)}
+.ad-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:.9rem}
+.ad-links a{color:var(--gold-lt);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(217,189,126,.4)}
+footer{color:#8f9bbb;text-align:center;font-size:.8rem}
+@media (prefers-reduced-motion:reduce){.bar span,.ad,.chip,.step{transition:none}}
+@media (max-width:420px){.share{grid-template-columns:1fr}.card{padding:20px 16px}}
 </style>
 
 </head>
 <body>
 <div class="wrap">
   <header class="hero">
-    <svg class="flag" viewBox="0 0 220 160" role="img" aria-label="דגל ישראל">
+    <div class="flagframe"><svg class="flag" viewBox="0 0 220 160" role="img" aria-label="דגל ישראל">
       <rect width="220" height="160" fill="#fff"/>
       <rect y="15" width="220" height="25" fill="#0038b8"/>
       <rect y="120" width="220" height="25" fill="#0038b8"/>
@@ -121,8 +139,10 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
         <polygon points="110,47 136,92 84,92"/>
         <polygon points="110,113 84,68 136,68"/>
       </g>
-    </svg>
+    </svg></div>
+    <p class="eyebrow">הבחירות לכנסת ה־26</p>
     <h1>נחשו את בחירות 2026</h1>
+    <div class="rule" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="10,2 17,14 3,14"/><polygon points="10,18 3,6 17,6"/></g></svg></div>
     <p class="sub">חלקו 120 מנדטים בין המפלגות, ושלחו את הניחוש שלכם לחברים בווטסאפ.</p>
   </header>
 
@@ -154,7 +174,7 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
   </section>
 
   <section class="card">
-    <label class="lbl">התמונה לשיתוף</label>
+    <div class="lbl">התמונה לשיתוף</div>
     <img class="shot" id="shot" alt="תמונת הניחוש שלך">
     <ol class="how">
       <li><b>בטלפון:</b> "שתפו את התמונה" ובחרו ווטסאפ. התמונה והקישור יוצאים יחד.</li>
@@ -164,7 +184,7 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
       <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1Zm-8 15a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/></svg>
       שתפו את התמונה
     </button>
-    <label class="lbl" style="margin-top:4px">ההודעה בווטסאפ</label>
+    <div class="lbl" style="margin-top:6px">ההודעה בווטסאפ</div>
     <div class="preview" id="preview"></div>
     <div class="share">
       <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener">
@@ -179,7 +199,7 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
   <a class="ad" href="https://ozmadvil.github.io/boten-site/" target="_blank" rel="noopener">
     <span class="tag">פרסומת</span>
     <span class="nut" aria-hidden="true">
-      <svg width="34" height="34" viewBox="0 0 40 40"><path d="M20 4c-6 0-9 4-9 8.5 0 3 1.6 4.6 1.6 7.5S11 24.4 11 27.5C11 32 14 36 20 36s9-4 9-8.5c0-3.1-1.6-4.6-1.6-7.5s1.6-4.5 1.6-7.5C29 8 26 4 20 4Z" fill="#ffd23f"/><g fill="#b88a00"><circle cx="17" cy="11" r="1.3"/><circle cx="23" cy="14" r="1.3"/><circle cx="18" cy="27" r="1.3"/><circle cx="23" cy="30" r="1.3"/></g></svg>
+      <svg width="32" height="32" viewBox="0 0 40 40"><path d="M20 4c-6 0-9 4-9 8.5 0 3 1.6 4.6 1.6 7.5S11 24.4 11 27.5C11 32 14 36 20 36s9-4 9-8.5c0-3.1-1.6-4.6-1.6-7.5s1.6-4.5 1.6-7.5C29 8 26 4 20 4Z" fill="#d9bd7e"/><g fill="#8a6a2c"><circle cx="17" cy="11" r="1.3"/><circle cx="23" cy="14" r="1.3"/><circle cx="18" cy="27" r="1.3"/><circle cx="23" cy="30" r="1.3"/></g></svg>
     </span>
     <span>
       <h2>בוטן – הדילים הכי שווים מאליאקספרס</h2>
@@ -198,7 +218,7 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
 <script>
 (function(){
   const MAX=120, MIN_PARTY=4, SITE="https://ozmadvil.github.io/mandatim/";
-  const COLORS=["#0a5bff","#00a3ff","#ff8a00","#7c3aed","#16a34a","#e11d48","#0891b2","#ca8a04","#9333ea","#059669","#dc2626","#2563eb","#d946ef","#65a30d","#f97316","#0f766e"];
+  const COLORS=["#1d3f99","#3d7cc9","#b8934a","#7a2e3a","#2f6b4f","#a24e2c","#4b5d8a","#8c7a3c","#5b3c7a","#3f7f7a","#9c3b3b","#2a4f7f","#7d5a8c","#5f7340","#c07a3a","#355d5d"];
   const AVG={"הליכוד":21,"ישר!":21,"ביחד":12,"עוצמה יהודית":8,"ש\"ס":8,"הדמוקרטים":8,"חד\"ש-תע\"ל-בל\"ד":8,"הציונות הדתית":7,"יהדות התורה":7,"ישראל ביתנו":7,"רע\"מ":5,"עמך ישראל":4,"הנדל וזליכה":4};
   const SUB={"ישר!":"איזנקוט","עמך ישראל":"וינטר"};
   let parties=Object.keys(AVG).map((n,i)=>({name:n,seats:AVG[n],color:COLORS[i%COLORS.length]}));
@@ -207,7 +227,7 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
   const list=$("list"), who=$("who");
 
   // restore draft
-  try{const s=JSON.parse(localStorage.getItem("mandatim-v1")||"null"); if(s&&Array.isArray(s.parties)){parties=s.parties; who.value=s.name||"";}}catch(e){}
+  try{const s=JSON.parse(localStorage.getItem("mandatim-v1")||"null"); if(s&&Array.isArray(s.parties)){parties=s.parties.map((p,i)=>({...p,color:COLORS[i%COLORS.length]})); who.value=s.name||"";}}catch(e){}
   function save(){try{localStorage.setItem("mandatim-v1",JSON.stringify({parties,name:who.value}))}catch(e){}}
 
   const total=()=>parties.reduce((a,p)=>a+p.seats,0);
@@ -307,7 +327,7 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
   const ctx=cv.getContext("2d");
   function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
   function drawFlag(x,y,w){
-    const h=w*8/11; ctx.save(); rr(x,y,w,h,10); ctx.clip();
+    const h=w*8/11; ctx.save(); ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip();
     ctx.fillStyle="#fff";ctx.fillRect(x,y,w,h);
     ctx.fillStyle="#0038b8";ctx.fillRect(x,y+h*.094,w,h*.156);ctx.fillRect(x,y+h*.75,w,h*.156);
     const cx=x+w/2, cy=y+h/2, r=h*.21; ctx.strokeStyle="#0038b8"; ctx.lineWidth=h*.034; ctx.lineJoin="miter";
@@ -315,46 +335,67 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
     ctx.restore();
   }
   function drawImage(){
-    const g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,"#1a6bff"); g.addColorStop(1,"#0038b8");
+    const NAVY="#0b2259", IVORY="#fbf7ee", GOLD="#b8934a", GOLDL="#d9bd7e", INK="#1a2238";
+    const SERIF='"Frank Ruhl Libre", "Times New Roman", serif', SANS='"Assistant", Arial, sans-serif';
+    const g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,"#11307a"); g.addColorStop(1,"#071841");
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-    ctx.direction="rtl"; ctx.textBaseline="alphabetic";
-    drawFlag(W-60-190,52,190);
-    const name=who.value.trim();
-    ctx.fillStyle="#fff"; ctx.textAlign="right";
-    ctx.font='400 74px "Secular One", Arial, sans-serif';
-    ctx.fillText(name?`הניחוש של ${name}`:"הניחוש שלי", W-60, 260);
-    ctx.font='600 40px "Assistant", Arial, sans-serif'; ctx.globalAlpha=.85;
-    ctx.fillText("התפלגות המנדטים · בחירות 2026", W-60, 318); ctx.globalAlpha=1;
+    // fine engraving lines
+    ctx.save(); ctx.strokeStyle="rgba(255,255,255,.03)"; ctx.lineWidth=1;
+    for(let k=-H;k<W;k+=9){ctx.beginPath();ctx.moveTo(k,0);ctx.lineTo(k+H,H);ctx.stroke();}
+    ctx.restore();
+    // outer gold frame
+    ctx.strokeStyle=GOLD; ctx.lineWidth=2; ctx.strokeRect(28,28,W-56,H-56);
+    ctx.strokeStyle="rgba(184,147,74,.45)"; ctx.lineWidth=1; ctx.strokeRect(38,38,W-76,H-76);
 
-    // panel
-    const px=48, py=360, pw=W-96, ph=830; ctx.fillStyle="#ffffff"; rr(px,py,pw,ph,32); ctx.fill();
+    ctx.direction="rtl"; ctx.textBaseline="alphabetic";
+    // flag in a gold frame, centered
+    const fw=150, fx=(W-fw)/2, fy=118; ctx.strokeStyle=GOLD; ctx.lineWidth=2; ctx.strokeRect(fx-8,fy-8,fw+16,fw*8/11+16);
+    drawFlag(fx,fy,fw);
+    const name=who.value.trim();
+    ctx.textAlign="center";
+    ctx.fillStyle=GOLDL; ctx.font='600 28px '+SANS; try{ctx.letterSpacing="3px";}catch(e){} ctx.fillText("הבחירות לכנסת ה־26", W/2, 318); try{ctx.letterSpacing="0px";}catch(e){}
+    ctx.fillStyle=IVORY; ctx.font='700 76px '+SERIF;
+    let title=name?`הניחוש של ${name}`:"הניחוש שלי"; while(ctx.measureText(title).width>W-160&&title.length>6) title=title.slice(0,-2)+"…";
+    ctx.fillText(title, W/2, 404);
+    // ornament rule
+    ctx.strokeStyle=GOLD; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(W/2-200,440); ctx.lineTo(W/2-24,440); ctx.moveTo(W/2+24,440); ctx.lineTo(W/2+200,440); ctx.stroke();
+    starOfDavid(W/2,440,13,GOLD);
+
+    // ivory panel
+    const px=78, py=480, pw=W-156, ph=700;
+    ctx.fillStyle=IVORY; ctx.fillRect(px,py,pw,ph);
+    ctx.strokeStyle=GOLD; ctx.lineWidth=2; ctx.strokeRect(px+10,py+10,pw-20,ph-20);
     const rows=[...parties].filter(p=>p.seats).sort((a,b)=>b.seats-a.seats);
     const t=total();
-    if(!rows.length){ctx.fillStyle="#5a6b8f";ctx.textAlign="center";ctx.font='600 44px "Assistant", Arial';ctx.fillText("עוד לא חולקו מנדטים",W/2,py+ph/2);}
+    if(!rows.length){ctx.fillStyle="#8a8070";ctx.textAlign="center";ctx.font='500 44px '+SERIF;ctx.fillText("עוד לא חולקו מנדטים",W/2,py+ph/2);}
     else{
-      const n=rows.length, rh=Math.min(68,(ph-110)/n), maxSeats=Math.max(...rows.map(r=>r.seats));
-      const nameW=330, numW=90, barX0=px+40+numW, barRight=px+pw-40-nameW-20, barMax=barRight-barX0;
-      let y=py+40;
-      rows.forEach(p=>{
+      const n=rows.length, top=py+40, avail=ph-130, rh=Math.min(64,avail/n), maxSeats=Math.max(...rows.map(r=>r.seats));
+      const inL=px+44, inR=px+pw-44, nameW=300, numW=80, barRight=inR-nameW-18, barX0=inL+numW, barMax=barRight-barX0;
+      let y=top;
+      rows.forEach((p,k)=>{
         const cy=y+rh/2;
-        ctx.fillStyle="#06204f"; ctx.textAlign="right"; ctx.font=`700 ${Math.round(rh*.5)}px "Assistant", Arial`;
+        ctx.fillStyle=INK; ctx.textAlign="right"; ctx.font=`500 ${Math.round(rh*.52)}px ${SERIF}`;
         let label=p.name; while(ctx.measureText(label).width>nameW && label.length>2) label=label.slice(0,-2)+"…";
-        ctx.fillText(label, px+pw-40, cy+rh*.17);
-        const bw=Math.max(8,barMax*p.seats/maxSeats); ctx.fillStyle=p.color; rr(barRight-bw,cy-rh*.28,bw,rh*.56,rh*.14); ctx.fill();
-        ctx.fillStyle="#06204f"; ctx.textAlign="left"; ctx.font=`400 ${Math.round(rh*.62)}px "Secular One", Arial`;
-        ctx.direction="ltr"; ctx.fillText(String(p.seats), px+40, cy+rh*.22); ctx.direction="rtl";
+        ctx.fillText(label, inR, cy+rh*.18);
+        const bw=Math.max(6,barMax*p.seats/maxSeats); ctx.fillStyle=p.color; ctx.fillRect(barRight-bw,cy-rh*.2,bw,rh*.4);
+        ctx.fillStyle=NAVY; ctx.textAlign="left"; ctx.font=`700 ${Math.round(rh*.62)}px ${SERIF}`;
+        ctx.direction="ltr"; ctx.fillText(String(p.seats), inL, cy+rh*.22); ctx.direction="rtl";
+        if(k<n-1){ctx.fillStyle="rgba(184,147,74,.25)";ctx.fillRect(inL,y+rh,inR-inL,1);}
         y+=rh;
       });
-      // total line
-      ctx.fillStyle="#eaf1ff"; ctx.fillRect(px+40,py+ph-66,pw-80,2);
-      ctx.fillStyle="#0038b8"; ctx.textAlign="right"; ctx.font='700 34px "Assistant", Arial';
-      ctx.fillText(t===MAX?"סה\"כ 120 מנדטים":`חולקו ${t} מתוך 120`, px+pw-40, py+ph-22);
+      ctx.fillStyle=GOLD; ctx.fillRect(inL,py+ph-78,inR-inL,1.5);
+      ctx.fillStyle=NAVY; ctx.textAlign="right"; ctx.font='500 34px '+SERIF;
+      ctx.fillText(t===MAX?"סך הכל 120 מנדטים":`חולקו ${t} מתוך 120`, inR, py+ph-34);
     }
     // footer
-    ctx.fillStyle="#ffd23f"; rr(48,1220,W-96,90,24); ctx.fill();
-    ctx.fillStyle="#06204f"; ctx.textAlign="center"; ctx.font='800 40px "Assistant", Arial';
-    ctx.fillText("מה הניחוש שלכם? הקישור בהודעה ←", W/2, 1279);
+    ctx.textAlign="center"; ctx.fillStyle=GOLDL; ctx.font='500 38px '+SERIF;
+    ctx.fillText("ומה הניחוש שלכם?  הקישור בהודעה", W/2, 1258);
     return cv.toDataURL("image/png");
+  }
+  function starOfDavid(cx,cy,r,col){
+    ctx.save(); ctx.strokeStyle=col; ctx.lineWidth=1.6;
+    [[-90,30,150],[90,210,330]].forEach(a=>{ctx.beginPath();a.forEach((d,k)=>{const t=d*Math.PI/180;ctx[k?"lineTo":"moveTo"](cx+r*Math.cos(t),cy+r*Math.sin(t))});ctx.closePath();ctx.stroke();});
+    ctx.restore();
   }
   let shotTimer; function refreshShot(){clearTimeout(shotTimer);shotTimer=setTimeout(()=>{$("shot").src=drawImage();},120);}
 
@@ -390,7 +431,7 @@ footer{color:var(--paper);opacity:.7;text-align:center;font-size:.8rem}
   };
   render();
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{
-    Promise.all(['400 74px "Secular One"','700 40px "Assistant"','800 40px "Assistant"'].map(f=>document.fonts.load(f).catch(()=>{}))).then(refreshShot);
+    Promise.all(['700 76px "Frank Ruhl Libre"','500 40px "Frank Ruhl Libre"','600 28px "Assistant"'].map(f=>document.fonts.load(f).catch(()=>{}))).then(refreshShot);
   });
 })();
 </script>
