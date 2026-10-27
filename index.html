@@ -31,6 +31,8 @@ img{max-width:100%}[hidden]{display:none!important}
   color-scheme:light;
 }
 *{box-sizing:border-box}
+html,button,a,.stepper,.num{touch-action:manipulation}
+.stepper{-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 body{background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
   background-image:radial-gradient(1200px 500px at 50% -10%,#3d84ff 0%,transparent 70%),linear-gradient(180deg,var(--sky) 0%,var(--sky-deep) 100%);background-attachment:fixed;min-height:100%}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sky-deep)}
