@@ -98,15 +98,23 @@ input[type=text]:focus{outline:none;background:#fff;box-shadow:0 0 0 3px rgba(47
 .toast:empty{display:none}
 .preview{background:var(--soft);border-radius:14px;padding:12px 14px;white-space:pre-wrap;font-size:.92rem;max-height:200px;overflow:auto}
 
-.ad{position:relative;background:var(--card);color:var(--navy);border-radius:24px;padding:20px 18px 18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;text-decoration:none;box-shadow:0 8px 28px rgba(28,95,209,.10);transition:transform .2s}
-.ad:hover{transform:translateY(-2px)}
-.ad .tag{position:absolute;top:10px;left:14px;font-size:.7rem;font-weight:600;color:#9aa9c2}
-.nut{width:56px;height:56px;border-radius:50%;background:#fff3cf;display:grid;place-items:center}
-.ad h2{font-family:var(--serif);font-weight:700;font-size:1.25rem;margin:0;line-height:1.2}
-.ad p{margin:4px 0 0;font-size:.95rem;color:var(--muted)}
-.ad .go{display:inline-block;margin-top:10px;background:var(--soft);color:var(--blue-2);font-weight:800;padding:7px 16px;border-radius:999px;font-size:.92rem}
+/* Boten ad, in Boten's own flyer colors: butter yellow, sale red, dark ink, dashed coupon cut-line */
+.ad{position:relative;display:flex;flex-direction:column;gap:12px;text-decoration:none;color:#1d1606;background:#fff3c4;border-radius:24px;padding:22px 20px 20px;
+  box-shadow:0 0 0 2px #fff3c4,0 0 0 4px #d03b37,0 14px 30px rgba(208,59,55,.22);transition:transform .2s}
+.ad:hover{transform:translateY(-2px) rotate(-.3deg)}
+.ad::after{content:"";position:absolute;inset:8px;border:2px dashed rgba(29,22,6,.22);border-radius:18px;pointer-events:none}
+.ad .tag{position:absolute;top:12px;left:16px;font-size:.72rem;font-weight:700;color:#4f4428}
+.ad .sticker{position:absolute;top:-14px;right:18px;background:#d03b37;color:#fff;font-weight:900;font-size:.85rem;padding:5px 14px;border-radius:999px;transform:rotate(-4deg);box-shadow:0 6px 14px rgba(208,59,55,.35)}
+.ad-head{display:flex;align-items:center;gap:14px}
+.nut{flex:none;width:58px;height:58px;border-radius:50%;background:#1d1606;display:grid;place-items:center;transform:rotate(-8deg)}
+.ad h2{font-weight:900;font-size:1.45rem;margin:0;line-height:1.15;letter-spacing:-.01em}
+.ad h2 em{font-style:normal;color:#d03b37}
+.ad p{margin:0;font-size:1rem;color:#3d3300}
+.ad .go{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:#d03b37;color:#fff;font-weight:900;font-size:1.02rem;padding:12px 22px;border-radius:999px;box-shadow:0 6px 16px rgba(208,59,55,.35)}
+.ad:hover .go{background:#b8001a}
 .ad-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;font-size:.9rem}
-.ad-links a{color:var(--blue-2);font-weight:700;text-decoration:none;background:#fff;border-radius:999px;padding:7px 16px;box-shadow:0 4px 12px rgba(28,95,209,.08)}
+.ad-links a{display:inline-flex;align-items:center;gap:6px;color:#1d1606;font-weight:700;text-decoration:none;background:#fff3c4;border-radius:999px;padding:8px 16px;box-shadow:0 0 0 1.5px #d03b37}
+.ad-links a:hover{background:#d03b37;color:#fff}
 footer{color:var(--muted);text-align:center;font-size:.8rem}
 @media (prefers-reduced-motion:reduce){.bar span,.ad,.chip,.step,.btn{transition:none}.btn:active,.step:active,.chip:active{transform:none}}
 @media (max-width:340px){.share{grid-template-columns:1fr}}
@@ -168,18 +176,19 @@ footer{color:var(--muted);text-align:center;font-size:.8rem}
   </section>
 
   <a class="ad" href="https://ozmadvil.github.io/boten-site/" target="_blank" rel="noopener">
+    <span class="sticker">מבצעים חמים</span>
     <span class="tag">פרסומת</span>
-    <span class="nut" aria-hidden="true">
-      <svg width="32" height="32" viewBox="0 0 40 40"><path d="M20 4c-6 0-9 4-9 8.5 0 3 1.6 4.6 1.6 7.5S11 24.4 11 27.5C11 32 14 36 20 36s9-4 9-8.5c0-3.1-1.6-4.6-1.6-7.5s1.6-4.5 1.6-7.5C29 8 26 4 20 4Z" fill="#e8b84a"/><g fill="#a77a19"><circle cx="17" cy="11" r="1.3"/><circle cx="23" cy="14" r="1.3"/><circle cx="18" cy="27" r="1.3"/><circle cx="23" cy="30" r="1.3"/></g></svg>
+    <span class="ad-head">
+      <span class="nut" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 40 40"><path d="M20 4c-6 0-9 4-9 8.5 0 3 1.6 4.6 1.6 7.5S11 24.4 11 27.5C11 32 14 36 20 36s9-4 9-8.5c0-3.1-1.6-4.6-1.6-7.5s1.6-4.5 1.6-7.5C29 8 26 4 20 4Z" fill="#fff3c4"/><g fill="#d03b37"><circle cx="17" cy="11" r="1.4"/><circle cx="23" cy="14" r="1.4"/><circle cx="18" cy="27" r="1.4"/><circle cx="23" cy="30" r="1.4"/></g></svg>
+      </span>
+      <h2>בוטן מוצא לכם את <em>המחיר הכי זול</em> באליאקספרס</h2>
     </span>
-    <span>
-      <h2>בוטן – הדילים הכי שווים מאליאקספרס</h2>
-      <p>מוצרים נבחרים, קופונים בתוקף ומחירים זולים יותר. הכל בעברית.</p>
-      <span class="go">לאתר של בוטן ←</span>
-    </span>
+    <p>דילים נבחרים, קופונים בתוקף ומוכרים זולים יותר. הכל בעברית.</p>
+    <span class="go">לדילים של בוטן ←</span>
   </a>
   <div class="ad-links">
-    <a href="https://t.me/Boten_IL_bot" target="_blank" rel="noopener">הבוט בטלגרם</a>
+    <a href="https://t.me/Boten_IL_bot?start=mandatim" target="_blank" rel="noopener">הבוט בטלגרם</a>
     <a href="https://t.me/Boten_deals" target="_blank" rel="noopener">ערוץ הדילים</a>
   </div>
 
